@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
+import { UserContext } from "../../context/UserContext";
 
 const theme = {
   background: "#F5F6F2",
@@ -15,31 +16,36 @@ const theme = {
 };
 
 export const SearchScreen = () => {
+  const { user } = useContext(UserContext);
+
   return (
-    <ThemeProvider theme={theme}>
-      <ChatBot
-        headerTitle="Asistente de ventas"
-        recognitionEnable={true}
-        floating={true}
-        recognitionLang="es"
-        steps={[
-          {
-            id: "1",
-            message: "What is your name?",
-            trigger: "2",
-          },
-          {
-            id: "2",
-            user: true,
-            trigger: "3",
-          },
-          {
-            id: "3",
-            message: "Hi {previousValue}, nice to meet you!",
-            end: true,
-          },
-        ]}
-      />
-    </ThemeProvider>
+    <>
+      <pre>{JSON.stringify(user, null, 3)}</pre>
+      <ThemeProvider theme={theme}>
+        <ChatBot
+          headerTitle="Asistente de ventas"
+          recognitionEnable={true}
+          floating={true}
+          recognitionLang="es"
+          steps={[
+            {
+              id: "1",
+              message: `What is your name?${user.cedula}`,
+              trigger: "2",
+            },
+            {
+              id: "2",
+              user: true,
+              trigger: "3",
+            },
+            {
+              id: "3",
+              message: "Hi {previousValue}, nice to meet you!",
+              end: true,
+            },
+          ]}
+        />
+      </ThemeProvider>
+    </>
   );
 };

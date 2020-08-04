@@ -1,18 +1,72 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { Link } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+
+import "./styles.css";
 
 export const LoginScreen = ({ history }) => {
-  const handleLogin = () => {
+  const { setUser } = useContext(UserContext);
+
+  const [formValues, handleInputChange] = useForm({
+    cedula: "",
+    password: "",
+  });
+
+  const { cedula, password } = formValues;
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (cedula && password) {
+      await setUser({ cedula, password });
+      history.replace("/"); // me remplaza el historia para que no pueda dar para atras y el push si lo permite.
+    } else {
+      alert("error en campos");
+    }
     // history.push("/");
-    history.replace("/"); // me remplaza el historia para que no pueda dar para atras y el push si lo permite.
   };
 
   return (
-    <div className="container mt-5">
-      <h1>Login</h1>
-      <hr />
-      <button className="btn btn-primary" onClick={handleLogin}>
-        Login
-      </button>
+    <div className="container login-container">
+      <div className="row">
+        <div className="col-md-6 login-form-1">
+          <h3>LOGIN</h3>
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Your Cedula *"
+                name="cedula"
+                value={cedula}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Your Password *"
+                name="password"
+                value={password}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <input type="submit" className="btnSubmit" value="Login" />
+            </div>
+            <div className="form-group">
+              <Link to="#" className="ForgetPwd">
+                Forget Password?
+              </Link>
+            </div>
+          </form>
+        </div>
+        <div className="col-md-6 login-form-2 container">
+          <h3>BIENVENIDO!!</h3>
+        </div>
+      </div>
     </div>
   );
 };
