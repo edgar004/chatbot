@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import { UserContext } from "../../context/UserContext";
+import {clasificacion} from '../../helpers/clasificacion';
+import Servicios from '../Servicios';
+import { useFetch } from "../../hooks/useFectch";
 
 const theme = {
   background: "#F5F6F2",
@@ -17,11 +20,16 @@ const theme = {
 
 export const SearchScreen = () => {
   const { user } = useContext(UserContext);
+  const url = `http://localhost:4000/api/usuario/${user.cedula}`;
+  const { loading, data }  = useFetch(url);
 
   return (
-    <>
-      <pre>{JSON.stringify(user, null, 3)}</pre>
-      <ThemeProvider theme={theme}>
+    <>    
+    <ThemeProvider theme={theme}>
+    {
+       loading ? <h1>Loading</h1> : (
+    
+      
         <ChatBot
           headerTitle="Asistente de ventas"
           recognitionEnable={true}
@@ -30,12 +38,18 @@ export const SearchScreen = () => {
           steps={[
             {
               id: "1",
-              message: `What is your name?${user.cedula}`,
-              trigger: "2",
+              message: `Saludos ${data.data.nombre} ${data.data.apellido}, Funeraria Charlys, en qué podemos servirle?`,
+              trigger: "usuario",
             },
             {
-              id: "2",
+              id: "usuario",
               user: true,
+              trigger: ({ value, steps }) => clasificacion(value),
+            },
+            {
+              id: "servicio",
+              component: <Servicios />,
+              waitAction: true,
               trigger: "3",
             },
             {
@@ -45,6 +59,9 @@ export const SearchScreen = () => {
             },
           ]}
         />
+      
+       )
+      }
       </ThemeProvider>
     </>
   );
