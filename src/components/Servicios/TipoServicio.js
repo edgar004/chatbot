@@ -1,11 +1,14 @@
 import React from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListServicios } from "./ListServicios";
+import {clasificacion} from '../../helpers/clasificacion';
 
-const Servicios = ({steps: {usuario: {value}} }) => {
+// Servicios por su tupo
+const TipoServicio = ({steps: {usuario: {value}} }) => {
 
-  // const url = `http://localhost:4000/api/${clasificacion(value)}`;
-  const url = `http://localhost:4000/api/servicio`;
+  const query = clasificacion(value);
+  console.log("aqui es la: ",query);
+  const url = `http://localhost:4000/api/servicio/${query}`;
   const { loading, data }  = useFetch(url);
 
   return (
@@ -13,11 +16,9 @@ const Servicios = ({steps: {usuario: {value}} }) => {
       {
         loading ? <h3>Loading...</h3> : (
           <ul className="list-group list-group-flush">
-            <li key="servicios" className="list-group-item"><h3>Servicios</h3></li> 
+            <li key="servicios" className="list-group-item"><h3>{`Servicios ${query}`}</h3></li> 
           {data.data[0].tipo_vs_servicios.map(v => {
-
-            const {servicio:{id,descripcion,img}} = v;
-
+              const {id, servicio:{descripcion, img}} = v;
             return(
               <li key={id} className="list-group-item"><ListServicios title={descripcion} img={img} /></li> 
             )
@@ -29,4 +30,4 @@ const Servicios = ({steps: {usuario: {value}} }) => {
   );
 };
 
-export default Servicios;
+export default TipoServicio;
