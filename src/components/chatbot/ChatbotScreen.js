@@ -12,6 +12,10 @@ import ServiciosPlan from "../plan/ServiciosPlan";
 import PrecioPlan from "../plan/PrecioPlan";
 import PlanesFamiliares from "../plan/PlanFamiliar";
 import ServiciosPlanFamiliar from "../plan/ServicioPlanFamiliar";
+import Mensualidad from "../mensualidad/Mensualidad";
+import FirstMes from "../mensualidad/FirstMes";
+import LastMes from "../mensualidad/LastMes";
+import Deudas from "../mensualidad/Deudas";
 
 
 const theme = {
@@ -31,8 +35,7 @@ export const ChatbotScreen = () => {
   const url = `http://localhost:4000/api/usuario/${user.cedula}`;
   const { loading, data }  = useFetch(url);
 
-  return (
-    <>    
+  return (  
     <ThemeProvider theme={theme}>
     {
        loading ? <h1>Loading</h1> : (
@@ -57,86 +60,78 @@ export const ChatbotScreen = () => {
             {
               id: "servicio",
               component: <Servicios />,
-              waitAction: true,
-              trigger: "3",
+              // asMessage: true,
+              trigger: "1",
             },
             {
               id: "independiente",
               component: <TipoServicio />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "plan",
               component: <Planes />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "premium",
               component: <ServiciosPlan />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "basico",
               component: <ServiciosPlan />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "precio/premium",
               component: <PrecioPlan />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "precio/basico",
               component: <PrecioPlan />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "planes-familiares",
               component: <PlanesFamiliares />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "planes-familiares-servicios",
               component: <ServiciosPlanFamiliar />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "precio-servicios",
               component: <PrecioServicio />,
-              waitAction: true,
-              trigger: "3",
+              trigger: "1",
             },
             {
               id: "movimientos",
-              component: <Servicios />,
-              waitAction: true,
-              trigger: "3",
+              component: <Mensualidad />,
+              trigger: "1",
             },
             {
               id: "primer-pago",
-              component: <Servicios />,
-              waitAction: true,
-              trigger: "3",
+              component: <FirstMes />,
+              trigger: "1",
             },
             {
               id: "ultimo-pago",
-              component: <Servicios />,
-              waitAction: true,
-              trigger: "3",
+              component: <LastMes />,
+              trigger: "1",
             },
             {
               id: "meses-pago",
-              component: <Servicios />,
-              waitAction: true,
-              trigger: "3",
+              component: <Deudas />,
+              trigger: "1",
+            },
+            {
+              id: "no-existe",
+              message: "No puedo responder esa pregunta",
+              trigger: "1",
             },
             {
               id: "3",
@@ -149,6 +144,5 @@ export const ChatbotScreen = () => {
        )
       }
       </ThemeProvider>
-    </>
   );
 };

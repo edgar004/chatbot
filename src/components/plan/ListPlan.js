@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export const ListPlan = ({title, precio}) => {
+export const ListPlan = memo(({title, precio}) => {
     return (
         <div className="card">
             <h5 className="card-header">{title}</h5>
@@ -9,4 +9,4 @@ export const ListPlan = ({title, precio}) => {
             </div>
         </div>
     )
-}
+})
