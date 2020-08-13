@@ -1,10 +1,9 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
-export const ListFamiliares = memo(({title}) => {
-    return (
-        <div className="card">
-            <h6 className="card-header">{title}</h6>
-        </div>
-    )
-})
-
+export const ListFamiliares = memo(({ title }) => {
+  return (
+    <div className="card">
+      <h6 className="card-header">{title}</h6>
+    </div>
+  );
+});

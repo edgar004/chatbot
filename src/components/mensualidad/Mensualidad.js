@@ -13,6 +13,7 @@ const Mensualidad = ({steps: {usuario: {value}} }) => {
     <>
       {
         loading ? <h3>Loading...</h3> : (
+          data.data.length ? (
           <ul className="list-group list-group-flush">
             <li key="Mensualidad" className="list-group-item"><h3>Mensualidad</h3></li> 
             
@@ -25,6 +26,11 @@ const Mensualidad = ({steps: {usuario: {value}} }) => {
             )
           })}
           </ul>
+        ): (
+          <ul className="list-group list-group-flush">
+          <li key="servicios" className="list-group-item"><h3>No hay pagos disponibles</h3></li> 
+          </ul>
+        )
         )
       }
     </>

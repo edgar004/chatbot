@@ -3,13 +3,15 @@ import Espa from "../../node_modules/natural/lib/natural/stemmers/porter_stemmer
 
 export const train = () => {
   const classifier = new natural.LogisticRegressionClassifier(Espa);
-  
+
   //----- Preguntas Generales
-  
-  
-  classifier.addDocument("servicios", "servicio");
-  classifier.addDocument("servicios individuales o independiente", "independiente");
-  classifier.addDocument("Precios servicio", "precio-servicios");
+
+  // classifier.addDocument("servicios", "servicio");
+  classifier.addDocument(
+    "servicios individuales o independiente",
+    "independiente"
+  );
+  classifier.addDocument("precio de los servicio", "precio-servicios");
 
   //planes y sus servicios
   classifier.addDocument("planes", "plan");
@@ -18,25 +20,30 @@ export const train = () => {
   classifier.addDocument("precio plan premium", "precio/premium");
   classifier.addDocument("precio plan basico", "precio/basico");
   classifier.addDocument("plan familiar", "planes-familiares");
-  classifier.addDocument("servicios plan familiar", "planes-familiares-servicios");
+  classifier.addDocument(
+    "servicios plan familiar",
+    "planes-familiares-servicios"
+  );
 
-  //pagos y movimientos 
+  //pagos y movimientos
   classifier.addDocument("movimientos o pagos realizados", "movimientos");
   classifier.addDocument("primer pago", "primer-pago");
   classifier.addDocument("último pago", "ultimo-pago");
   classifier.addDocument("meses debo o tengo pendiente", "meses-pago");
 
   //Preguntas de Precios de Servicios Independientes
-  
-  // OJO OJO OJO OJO OJO OJO OJO OJO OJO OJO OJO OJO 
-  classifier.addDocument("precio de los arreglos florales", "arreglos florales");
+
+  classifier.addDocument(
+    "precio de los arreglos florales",
+    "arreglos florales"
+  );
+  classifier.addDocument("precio de un ataud", "ataud");
   classifier.addDocument("precio de los recordatorios", "recordatorios");
   classifier.addDocument("precio de los servicios religiosos", "religiosos");
   classifier.addDocument("precio de una lapida", "lapida");
   classifier.addDocument("precio de un servicio de música", "musica");
 
-  
   classifier.train();
 
- return classifier;
-}
+  return classifier;
+};

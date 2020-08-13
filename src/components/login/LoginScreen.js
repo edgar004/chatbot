@@ -20,11 +20,10 @@ export const LoginScreen = ({ history }) => {
 
     if (cedula && password) {
       await setUser({ cedula, password });
-      history.replace("/"); // me remplaza el historia para que no pueda dar para atras y el push si lo permite.
+      history.replace("/"); 
     } else {
       alert("error en campos");
     }
-    // history.push("/");
   };
 
   return (

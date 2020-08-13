@@ -3,28 +3,47 @@ import { useFetch } from "../../hooks/useFectch";
 import { ListMensualidad } from "./ListMensualidad";
 import { UserContext } from "../../context/UserContext";
 
-
 const LastMes = () => {
-    const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const url = `http://localhost:4000/api/mensualidad/ultimo/${user.cedula}`;
-  const { loading, data }  = useFetch(url);
+  const { loading, data } = useFetch(url);
 
   return (
     <>
-      {
-        loading ? <h3>Loading...</h3> : (
-          <ul className="list-group list-group-flush">
-            <li key="LastMes" className="list-group-item"><h3>Ultimo mes Pagado</h3></li> 
-            {(()=>{
-                const {id, total,fecha,usuario:{nombre, apellido}} = data.data;
-                return(
-                <li key={id} className="list-group-item"><ListMensualidad total={total} fecha={fecha} nombre={nombre} apellido={apellido} /></li> 
-                )
-            })()}
-          </ul>
-        )
-      }
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : data.data ? (
+        <ul className="list-group list-group-flush">
+          <li key="LastMes" className="list-group-item">
+            <h3>Ultimo mes Pagado</h3>
+          </li>
+          {(() => {
+            const {
+              id,
+              total,
+              fecha,
+              usuario: { nombre, apellido },
+            } = data.data;
+            return (
+              <li key={id} className="list-group-item">
+                <ListMensualidad
+                  total={total}
+                  fecha={fecha}
+                  nombre={nombre}
+                  apellido={apellido}
+                />
+              </li>
+            );
+          })()}
+        </ul>
+      ) : (
+        <ul className="list-group list-group-flush">
+          <li key="servicios" className="list-group-item">
+            <h3>No hay pagos disponibles</h3>
+          </li>
+        </ul>
+      )}
     </>
   );
 };

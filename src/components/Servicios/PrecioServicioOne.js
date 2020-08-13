@@ -1,11 +1,16 @@
 import React from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListPrecioServicios } from "./ListPrecioServicios";
+import { clasificacion } from "../../helpers/clasificacion";
 
-const PrecioServicio = () => {
-  const url = `http://localhost:4000/api/precio`;
+const PrecioServicioOne = ({
+  steps: {
+    usuario: { value },
+  },
+}) => {
+  const query = clasificacion(value);
+  const url = `http://localhost:4000/api/precio/${query}`;
   const { loading, data } = useFetch(url);
-
   return (
     <>
       {loading ? (
@@ -13,20 +18,16 @@ const PrecioServicio = () => {
       ) : data.data.length ? (
         <ul className="list-group list-group-flush">
           <li key="servicios" className="list-group-item">
-            <h3>Precio por servicio</h3>
+            <h3>Servicio: {data.data[0].descripcion}</h3>
           </li>
           {data.data.map((v) => {
-            const {
-              id,
-              precio,
-              servicio: { descripcion, img },
-            } = v;
+            const { id, descripcion, img } = v;
             return (
               <li key={id} className="list-group-item">
                 <ListPrecioServicios
                   title={descripcion}
                   img={img}
-                  precio={precio}
+                  precio={v.precio_vs_servicios[0].precio}
                 />
               </li>
             );
@@ -35,7 +36,7 @@ const PrecioServicio = () => {
       ) : (
         <ul className="list-group list-group-flush">
           <li key="servicios" className="list-group-item">
-            <h3>No hay servicios disponibles</h3>
+            <h3>Este servicio no es un servicio que se vende individual</h3>
           </li>
         </ul>
       )}
@@ -43,4 +44,4 @@ const PrecioServicio = () => {
   );
 };
 
-export default PrecioServicio;
+export default PrecioServicioOne;

@@ -2,21 +2,22 @@ import React, { useContext } from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import { UserContext } from "../../context/UserContext";
-import {clasificacion} from '../../helpers/clasificacion';
+import { clasificacion } from "../../helpers/clasificacion";
 import { useFetch } from "../../hooks/useFectch";
-import Servicios from '../Servicios';
-import TipoServicio from '../Servicios/TipoServicio';
-import PrecioServicio from '../Servicios/PrecioServicio';
-import Planes from "../plan/Planes";
-import ServiciosPlan from "../plan/ServiciosPlan";
-import PrecioPlan from "../plan/PrecioPlan";
-import PlanesFamiliares from "../plan/PlanFamiliar";
-import ServiciosPlanFamiliar from "../plan/ServicioPlanFamiliar";
-import Mensualidad from "../mensualidad/Mensualidad";
+
+import Deudas from "../mensualidad/Deudas";
 import FirstMes from "../mensualidad/FirstMes";
 import LastMes from "../mensualidad/LastMes";
-import Deudas from "../mensualidad/Deudas";
-
+import Mensualidad from "../mensualidad/Mensualidad";
+import Planes from "../plan/Planes";
+import PlanesFamiliares from "../plan/PlanFamiliar";
+import PrecioPlan from "../plan/PrecioPlan";
+import PrecioServicio from "../Servicios/PrecioServicio";
+import PrecioServicioOne from "../Servicios/PrecioServicioOne";
+import Servicios from "../Servicios";
+import ServiciosPlan from "../plan/ServiciosPlan";
+import ServiciosPlanFamiliar from "../plan/ServicioPlanFamiliar";
+import TipoServicio from "../Servicios/TipoServicio";
 
 const theme = {
   background: "#F5F6F2",
@@ -33,14 +34,13 @@ const theme = {
 export const ChatbotScreen = () => {
   const { user } = useContext(UserContext);
   const url = `http://localhost:4000/api/usuario/${user.cedula}`;
-  const { loading, data }  = useFetch(url);
+  const { loading, data } = useFetch(url);
 
-  return (  
+  return (
     <ThemeProvider theme={theme}>
-    {
-       loading ? <h1>Loading</h1> : (
-    
-      
+      {loading ? (
+        <h1>Loading</h1>
+      ) : (
         <ChatBot
           headerTitle="Asistente de ventas"
           recognitionEnable={true}
@@ -60,89 +60,138 @@ export const ChatbotScreen = () => {
             {
               id: "servicio",
               component: <Servicios />,
-              // asMessage: true,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "independiente",
               component: <TipoServicio />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "plan",
               component: <Planes />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "premium",
               component: <ServiciosPlan />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "basico",
               component: <ServiciosPlan />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "precio/premium",
               component: <PrecioPlan />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "precio/basico",
               component: <PrecioPlan />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "planes-familiares",
               component: <PlanesFamiliares />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "planes-familiares-servicios",
               component: <ServiciosPlanFamiliar />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "precio-servicios",
               component: <PrecioServicio />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "movimientos",
               component: <Mensualidad />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "primer-pago",
               component: <FirstMes />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "ultimo-pago",
               component: <LastMes />,
-              trigger: "1",
+              trigger: "sugerencia2",
             },
             {
               id: "meses-pago",
               component: <Deudas />,
-              trigger: "1",
+              trigger: "sugerencia2",
+            },
+            {
+              id: "ataud",
+              component: <PrecioServicioOne />,
+              trigger: "sugerencia2",
+            },
+            {
+              id: "flores",
+              component: <PrecioServicioOne />,
+              trigger: "sugerencia2",
+            },
+            {
+              id: "musica",
+              component: <PrecioServicioOne />,
+              trigger: "sugerencia2",
             },
             {
               id: "no-existe",
-              message: "No puedo responder esa pregunta",
-              trigger: "1",
+              message:
+                "La pregunta realizada no puede ser contestada por este ChatBot, favor llamar 809-612-3445 para mas detalles",
+              trigger: "consultar",
             },
             {
-              id: "3",
-              message: "Hi {previousValue}, nice to meet you!",
+              id: "consultar",
+              message:
+                "Estas son algunas sugerencias de lo que le puedo contestar",
+              trigger: "sugerencias",
+            },
+            {
+              id: "sugerencias",
+              options: [
+                { value: 1, label: "Servicio", trigger: "servicio" },
+                { value: 2, label: "Planes", trigger: "plan" },
+                {
+                  value: 3,
+                  label: "Precio de los servicios",
+                  trigger: "precio-servicios",
+                },
+                {
+                  value: 4,
+                  label: "Planes familiares",
+                  trigger: "planes-familiares",
+                },
+                { value: 5, label: "Pagos realizados", trigger: "movimientos" },
+                { value: 6, label: "Otra...", trigger: "usuario" },
+                { value: 7, label: "Terminar conversacion", trigger: "end" },
+              ],
+            },
+            {
+              id: "sugerencia2",
+              message: "En que otra cosa le puedo ayudar?",
+              trigger: "usuario",
+            },
+            {
+              id: "otra",
+              message: "Introduzca su pregunta en la caja de texto.",
+              trigger: "usuario",
+            },
+            {
+              id: "end",
+              message: "Gracias por charlar!",
               end: true,
             },
           ]}
         />
-      
-       )
-      }
-      </ThemeProvider>
+      )}
+    </ThemeProvider>
   );
 };

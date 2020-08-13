@@ -16,7 +16,6 @@ export const useFetch = (url) => {
   }, []);
 
   useEffect(() => {
-
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
@@ -26,7 +25,7 @@ export const useFetch = (url) => {
             error: null,
             data,
           });
-      })
+      });
   }, [url]);
 
   return state;
