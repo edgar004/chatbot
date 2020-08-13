@@ -20,15 +20,15 @@ import ServiciosPlanFamiliar from "../plan/ServicioPlanFamiliar";
 import TipoServicio from "../Servicios/TipoServicio";
 
 const theme = {
-  background: "#F5F6F2",
-  fontFamily: "Helvetica Neue",
+  background: "#F5F6F2", //fondo del chatbot
+  fontFamily: "Segoe UI",
   headerBgColor: "#06A7E8",
   headerFontColor: "#fff",
   headerFontSize: "20px",
-  botBubbleColor: "#D1E6E8",
+  botBubbleColor: "#D8DADA",
   botFontColor: "#000",
-  userBubbleColor: "#DBE1E1",
-  userFontColor: "#4a4a4a",
+  userBubbleColor: "#06A7E8",
+  userFontColor: "#fff",
 };
 
 export const ChatbotScreen = () => {
@@ -43,13 +43,16 @@ export const ChatbotScreen = () => {
       ) : (
         <ChatBot
           headerTitle="Asistente de ventas"
+          placeholder="Escriba su mensaje"
+          botAvatar="https://support.upwork.com/hc/article_attachments/360040474034/chatbot-data.png"
+          userAvatar="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
           recognitionEnable={true}
           floating={true}
           recognitionLang="es"
           steps={[
             {
               id: "1",
-              message: `Saludos ${data.data.nombre} ${data.data.apellido}, Funeraria Charlys, en qué podemos servirle?`,
+              message: `Hola! ${data.data.nombre} ${data.data.apellido}, En qué te puedo ayudar?`,
               trigger: "usuario",
             },
             {
@@ -170,7 +173,7 @@ export const ChatbotScreen = () => {
                   trigger: "planes-familiares",
                 },
                 { value: 5, label: "Pagos realizados", trigger: "movimientos" },
-                { value: 6, label: "Otra...", trigger: "usuario" },
+                { value: 6, label: "Otra...", trigger: "otra" },
                 { value: 7, label: "Terminar conversacion", trigger: "end" },
               ],
             },
