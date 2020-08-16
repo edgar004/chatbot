@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
@@ -7,7 +7,7 @@ import "./styles.css";
 
 export const LoginScreen = ({ history }) => {
   const { setUser } = useContext(UserContext);
-
+  const [speak, setSpeak] = useState(false);
   const [formValues, handleInputChange] = useForm({
     cedula: "",
     password: "",
@@ -19,8 +19,8 @@ export const LoginScreen = ({ history }) => {
     e.preventDefault();
 
     if (cedula && password) {
-      await setUser({ cedula, password });
-      history.replace("/"); 
+      await setUser({ cedula, password, speak });
+      history.replace("/");
     } else {
       alert("error en campos");
     }
@@ -52,7 +52,17 @@ export const LoginScreen = ({ history }) => {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="form-group">
+            <div className="form-check">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="exampleCheck1"
+                value={speak}
+                onChange={({target:{checked}})=> setSpeak(checked)}
+              />
+              <label className="form-check-label">Desea que el ChatBot hable?</label>
+            </div>
+            <div className="form-group mt-4">
               <input type="submit" className="btnSubmit" value="Login" />
             </div>
             <div className="form-group">

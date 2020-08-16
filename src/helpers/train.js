@@ -6,12 +6,12 @@ export const train = () => {
 
   //----- Preguntas Generales
 
-  // classifier.addDocument("servicios", "servicio");
+  classifier.addDocument("servicios", "servicio");
   classifier.addDocument(
     "servicios individuales o independiente",
     "independiente"
   );
-  classifier.addDocument("precio de los servicio", "precio-servicios");
+  classifier.addDocument("precio de cada servicio", "precio-servicios");
 
   //planes y sus servicios
   classifier.addDocument("planes", "plan");
@@ -42,6 +42,9 @@ export const train = () => {
   classifier.addDocument("precio de los servicios religiosos", "religiosos");
   classifier.addDocument("precio de una lapida", "lapida");
   classifier.addDocument("precio de un servicio de música", "musica");
+
+  // Salir
+  classifier.addDocument("Salir o terminar conversacion", "end");
 
   classifier.train();
 

@@ -9,7 +9,7 @@ const ServiciosPlan = ({
   },
 }) => {
   const query = clasificacion(value);
-  const url = `http://localhost:4000/api/plan/${query}`;
+  const url = `https://pruebachatbots.herokuapp.com/api/plan/${query}`;
   const { loading, data } = useFetch(url);
 
   return (

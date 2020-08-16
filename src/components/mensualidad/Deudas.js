@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { UserContext } from "../../context/UserContext";
 
-const Deudas = () => {
+const Deudas = memo(() => {
   const { user } = useContext(UserContext);
 
-  const url = `http://localhost:4000/api/mensualidad/${user.cedula}`;
+  const url = `https://pruebachatbots.herokuapp.com/api/mensualidad/${user.cedula}`;
   const { loading, data } = useFetch(url);
   return (
     <>
@@ -19,7 +19,7 @@ const Deudas = () => {
           <li key="MesesPendiente" className="list-group-item">
             <div className="card">
               <h5 className="card-header">
-                Cantidad de meses pendientes: {data.mesesPendiente}{" "}
+                Cantidad de meses pendientes: {data.mesesPendiente}{console.log(data.mesesPendiente)}
               </h5>
             </div>
           </li>
@@ -27,6 +27,6 @@ const Deudas = () => {
       )}
     </>
   );
-};
+});
 
 export default Deudas;

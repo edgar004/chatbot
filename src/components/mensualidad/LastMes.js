@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext";
 const LastMes = () => {
   const { user } = useContext(UserContext);
 
-  const url = `http://localhost:4000/api/mensualidad/ultimo/${user.cedula}`;
+  const url = `https://pruebachatbots.herokuapp.com/api/mensualidad/ultimo/${user.cedula}`;
   const { loading, data } = useFetch(url);
 
   return (

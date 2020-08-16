@@ -9,7 +9,7 @@ const PrecioServicioOne = ({
   },
 }) => {
   const query = clasificacion(value);
-  const url = `http://localhost:4000/api/precio/${query}`;
+  const url = `https://pruebachatbots.herokuapp.com/api/precio/${query}`;
   const { loading, data } = useFetch(url);
   return (
     <>

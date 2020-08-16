@@ -3,7 +3,7 @@ import { useFetch } from "../../hooks/useFectch";
 import { ListPlan } from "./ListPlan";
 
 const Planes = () => {
-  const url = `http://localhost:4000/api/plan`;
+  const url = `https://pruebachatbots.herokuapp.com/api/plan`;
   const { loading, data } = useFetch(url);
 
   return (

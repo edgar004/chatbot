@@ -3,7 +3,7 @@ import { useFetch } from "../../hooks/useFectch";
 import { ListPrecioServicios } from "./ListPrecioServicios";
 
 const PrecioServicio = () => {
-  const url = `http://localhost:4000/api/precio`;
+  const url = `https://pruebachatbots.herokuapp.com/api/precio`;
   const { loading, data } = useFetch(url);
 
   return (

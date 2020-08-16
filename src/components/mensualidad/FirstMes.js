@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext";
 const FirstMes = () => {
   const { user } = useContext(UserContext);
 
-  const url = `http://localhost:4000/api/mensualidad/primer/${user.cedula}`;
+  const url = `https://pruebachatbots.herokuapp.com/api/mensualidad/primer/${user.cedula}`;
   const { loading, data } = useFetch(url);
 
   return (
@@ -16,7 +16,7 @@ const FirstMes = () => {
       ) : data.data ? (
         <ul className="list-group list-group-flush">
           <li key="FirstMes" className="list-group-item">
-            <h3>Ultimo mes Pagado</h3>
+            <h3>Primer mes Pagado</h3>
           </li>
 
           {(() => {

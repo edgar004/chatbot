@@ -9,7 +9,7 @@ const PrecioPlan = ({
   },
 }) => {
   const query = clasificacion(value);
-  const url = `http://localhost:4000/api/plan/${query}`;
+  const url = `https://pruebachatbots.herokuapp.com/api/plan/${query}`;
   console.log(url);
   const { loading, data } = useFetch(url);
 
