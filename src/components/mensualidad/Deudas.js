@@ -19,7 +19,7 @@ const Deudas = memo(() => {
           <li key="MesesPendiente" className="list-group-item">
             <div className="card">
               <h5 className="card-header">
-                Cantidad de meses pendientes: {data.mesesPendiente}{console.log(data.mesesPendiente)}
+                Cantidad de meses pendientes: {data.mesesPendiente}
               </h5>
             </div>
           </li>
