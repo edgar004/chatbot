@@ -10,7 +10,7 @@ export const DasboardRoutes = () => {
       <div className="container mt-2">
         <Switch>
           <Route exact path="/chatbot" component={ChatbotScreen} />
-          <Redirect to="/chatbot" />
+          <Redirect to="/" />
         </Switch>
       </div>
     </>

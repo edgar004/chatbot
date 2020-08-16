@@ -4,7 +4,7 @@ import { ListMensualidad } from "./ListMensualidad";
 import { UserContext } from "../../context/UserContext";
 
 
-const Mensualidad = ({steps: {usuario: {value}} }) => {
+const Mensualidad = () => {
     const { user } = useContext(UserContext);
 
   const url = `https://pruebachatbots.herokuapp.com/api/mensualidad/${user.cedula}`;

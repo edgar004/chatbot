@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/chatbot">
         ChatBot
       </Link>
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
@@ -12,7 +12,7 @@ export const Navbar = () => {
             activeClassName="active"
             className="nav-item nav-link"
             exact
-            to="/login"
+            to="/"
           >
             Logout
           </NavLink>

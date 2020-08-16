@@ -9,8 +9,8 @@ export const AppRouter = () => {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/login" component={LoginScreen} />
-          <Route path="/" component={DasboardRoutes} />
+          <Route exact path="/" component={LoginScreen} />
+          <Route path="/chatbot" component={DasboardRoutes} />
           {/* Sistema de rutas hijas */}
         </Switch>
       </div>

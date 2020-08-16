@@ -20,7 +20,7 @@ export const LoginScreen = ({ history }) => {
 
     if (cedula && password) {
       await setUser({ cedula, password, speak });
-      history.replace("/");
+      history.replace("/chatbot");
     } else {
       alert("error en campos");
     }
