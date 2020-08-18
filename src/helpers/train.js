@@ -11,7 +11,7 @@ export const train = () => {
     "servicios individuales o independiente",
     "independiente"
   );
-  classifier.addDocument("precio de cada servicio", "precio-servicios");
+  classifier.addDocument("precio de cada servicio o precios de los servicios", "precio-servicios");
 
   //planes y sus servicios
   classifier.addDocument("planes", "plan");
@@ -33,15 +33,14 @@ export const train = () => {
 
   //Preguntas de Precios de Servicios Independientes
 
-  classifier.addDocument(
-    "precio de los arreglos florales",
-    "arreglos florales"
-  );
   classifier.addDocument("precio de un ataud", "ataud");
   classifier.addDocument("precio de los recordatorios", "recordatorios");
-  classifier.addDocument("precio de los servicios religiosos", "religiosos");
   classifier.addDocument("precio de una lapida", "lapida");
-  classifier.addDocument("precio de un servicio de música", "musica");
+  classifier.addDocument("precio de carpa agua cafe sillas", "carpa agua cafe sillas");
+  classifier.addDocument("precio de los religiosos", "servicios religiosos");
+  classifier.addDocument("precio de música", "musica");
+  classifier.addDocument("precio de autobuses", "autobuses");
+  classifier.addDocument("precio de capillas adicionales", "capillas adicionales");
 
   // Salir
   classifier.addDocument("Salir o terminar conversacion", "end");

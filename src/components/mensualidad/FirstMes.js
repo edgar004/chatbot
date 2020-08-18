@@ -12,7 +12,15 @@ const FirstMes = () => {
   return (
     <>
       {loading ? (
-        <h3>Loading...</h3>
+       <div className="text-center">
+       <div
+         className="spinner-border text-primary"
+         style={{ width: "3rem", height: "3rem" }}
+         role="status"
+       >
+         <span className="sr-only">Loading...</span>
+       </div>
+     </div>
       ) : data.data ? (
         <ul className="list-group list-group-flush">
           <li key="FirstMes" className="list-group-item">
