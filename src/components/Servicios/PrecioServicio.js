@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListPrecioServicios } from "./ListPrecioServicios";
 
-const PrecioServicio = () => {
+const PrecioServicio = memo(() => {
   const url = `https://pruebachatbots.herokuapp.com/api/precio`;
   const { loading, data } = useFetch(url);
 
@@ -49,6 +49,6 @@ const PrecioServicio = () => {
       )}
     </>
   );
-};
+});
 
 export default PrecioServicio;

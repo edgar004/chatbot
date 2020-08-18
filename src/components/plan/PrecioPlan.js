@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListPlan } from "./ListPlan";
 import { clasificacion } from "../../helpers/clasificacion";
 
-const PrecioPlan = ({
+const PrecioPlan = memo(({
   steps: {
     usuario: { value },
   },
@@ -12,7 +12,7 @@ const PrecioPlan = ({
   const url = `https://pruebachatbots.herokuapp.com/api/plan/${query}`;
   console.log(url);
   const { loading, data } = useFetch(url);
-
+  
   return (
     <>
       {loading ? (
@@ -46,6 +46,6 @@ const PrecioPlan = ({
       )}
     </>
   );
-};
+});
 
 export default PrecioPlan;

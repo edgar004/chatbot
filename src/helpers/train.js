@@ -21,7 +21,7 @@ export const train = () => {
   classifier.addDocument("precio plan basico", "precio/basico");
   classifier.addDocument("plan familiar o planes familiares", "planes-familiares");
   classifier.addDocument(
-    "servicios plan familiar",
+    "servicios plan familiar o familiares",
     "planes-familiares-servicios"
   );
 

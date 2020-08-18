@@ -33,7 +33,7 @@ const theme = {
 
 export const ChatbotScreen = () => {
   const {
-    user: { cedula, speak },
+    user: { cedula },
   } = useContext(UserContext);
   const url = `https://pruebachatbots.herokuapp.com/api/usuario/${cedula}`;
   const { loading, data } = useFetch(url);
@@ -60,7 +60,6 @@ export const ChatbotScreen = () => {
           placeholder="Escriba su mensaje"
           botAvatar="https://support.upwork.com/hc/article_attachments/360040474034/chatbot-data.png"
           userAvatar="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
-          speechSynthesis={{ enable: { speak }, lang: "es" }}
           recognitionEnable={true}
           floating={true}
           recognitionLang="es"

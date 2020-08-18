@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListPrecioServicios } from "./ListPrecioServicios";
 import { clasificacion } from "../../helpers/clasificacion";
 
-const PrecioServicioOne = ({
+const PrecioServicioOne = memo(({
   steps: {
     usuario: { value },
   },
@@ -50,6 +50,6 @@ const PrecioServicioOne = ({
       )}
     </>
   );
-};
+});
 
 export default PrecioServicioOne;

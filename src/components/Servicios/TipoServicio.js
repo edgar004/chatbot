@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListServicios } from "./ListServicios";
 import { clasificacion } from "../../helpers/clasificacion";
 
-const TipoServicio = ({
+const TipoServicio = memo(({
   steps: {
     usuario: { value },
   },
@@ -50,6 +50,6 @@ const TipoServicio = ({
       )}
     </>
   );
-};
+});
 
 export default TipoServicio;
