@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListMensualidad } from "./ListMensualidad";
 import { UserContext } from "../../context/UserContext";
 
-const LastMes = () => {
+const LastMes = memo(() => {
   const { user } = useContext(UserContext);
 
   const url = `https://pruebachatbots.herokuapp.com/api/mensualidad/ultimo/${user.cedula}`;
@@ -54,6 +54,6 @@ const LastMes = () => {
       )}
     </>
   );
-};
+});
 
 export default LastMes;

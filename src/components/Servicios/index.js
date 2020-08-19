@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListServicios } from "./ListServicios";
 
-const Servicios = () => {
+const Servicios = memo(() => {
   const url = `https://pruebachatbots.herokuapp.com/api/servicio`;
   const { loading, data } = useFetch(url);
 
@@ -45,6 +45,6 @@ const Servicios = () => {
       )}
     </>
   );
-};
+});
 
 export default Servicios;

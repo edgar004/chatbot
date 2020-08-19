@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListFamiliares } from "./ListFamiliares";
 
-const ServiciosPlanFamiliar = () => {
+const ServiciosPlanFamiliar = memo(() => {
   const url = `https://pruebachatbots.herokuapp.com/api/plan/servicio/familiar`;
   const { loading, data } = useFetch(url);
 
@@ -52,6 +52,6 @@ const ServiciosPlanFamiliar = () => {
       )}
     </>
   );
-};
+});
 
 export default ServiciosPlanFamiliar;

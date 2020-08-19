@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListPlan } from "./ListPlan";
 import { clasificacion } from "../../helpers/clasificacion";
 
-const PrecioPlan = ({
+const PrecioPlan = memo(({
   steps: {
     usuario: { value },
   },
@@ -46,6 +46,6 @@ const PrecioPlan = ({
       )}
     </>
   );
-};
+});
 
 export default PrecioPlan;

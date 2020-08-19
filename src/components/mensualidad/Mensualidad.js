@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { useFetch } from "../../hooks/useFectch";
 import { ListMensualidad } from "./ListMensualidad";
 import { UserContext } from "../../context/UserContext";
 
-const Mensualidad = () => {
+const Mensualidad = memo(() => {
   const { user } = useContext(UserContext);
 
   const url = `https://pruebachatbots.herokuapp.com/api/mensualidad/${user.cedula}`;
@@ -55,6 +55,6 @@ const Mensualidad = () => {
       )}
     </>
   );
-};
+});
 
 export default Mensualidad;
