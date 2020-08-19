@@ -12,7 +12,7 @@ const PrecioPlan = memo(({
   const url = `https://pruebachatbots.herokuapp.com/api/plan/${query}`;
   console.log(url);
   const { loading, data } = useFetch(url);
-  
+
   return (
     <>
       {loading ? (

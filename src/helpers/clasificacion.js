@@ -6,6 +6,5 @@ export const clasificacion = (user) => {
   if (classifier.getClassifications(user)[0].value === 0.5) {
     return "no-existe";
   }
-
   return classifier.classify(user);
 };
